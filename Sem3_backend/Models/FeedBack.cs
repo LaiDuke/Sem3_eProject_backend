@@ -7,5 +7,8 @@ namespace Sem3_backend.Models
 {
     public class FeedBack
     {
+        public int Id { get; set; }
+        public string Content { get; set; }
+        public string UserEmail { get; set; }
     }
 }
