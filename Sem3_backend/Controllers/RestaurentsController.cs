@@ -11,107 +11,112 @@ using Sem3_backend.Models;
 namespace Sem3_backend.Controllers
 {
     [Authorize]
-    public class TouristSpotsController : Controller
+    public class RestaurentsController : Controller
     {
         private TouristSpotDbContext db = new TouristSpotDbContext();
 
-        // GET: TouristSpots
+        // GET: Restaurents
         public ActionResult Index()
         {
-            return View(db.TouristSpots.ToList());
+            var restaurents = db.Restaurents.Include(r => r.TouristSpot);
+            return View(restaurents.ToList());
         }
 
-        // GET: TouristSpots/Details/5
+        // GET: Restaurents/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TouristSpot touristSpot = db.TouristSpots.Find(id);
-            if (touristSpot == null)
+            Restaurent restaurent = db.Restaurents.Find(id);
+            if (restaurent == null)
             {
                 return HttpNotFound();
             }
-            return View(touristSpot);
+            return View(restaurent);
         }
 
-        // GET: TouristSpots/Create
+        // GET: Restaurents/Create
         public ActionResult Create()
         {
+            ViewBag.TouristSpotId = new SelectList(db.TouristSpots, "TouristSpotId", "Name");
             return View();
         }
 
-        // POST: TouristSpots/Create
+        // POST: Restaurents/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "TouristSpotId,Name,Content,Destination,ImageUrl")] TouristSpot touristSpot)
+        public ActionResult Create([Bind(Include = "RestaurentId,TouristSpotId,ImageUrl,Content,Name,Price,Quality,Location")] Restaurent restaurent)
         {
             if (ModelState.IsValid)
             {
-                db.TouristSpots.Add(touristSpot);
+                db.Restaurents.Add(restaurent);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(touristSpot);
+            ViewBag.TouristSpotId = new SelectList(db.TouristSpots, "TouristSpotId", "Name", restaurent.TouristSpotId);
+            return View(restaurent);
         }
 
-        // GET: TouristSpots/Edit/5
+        // GET: Restaurents/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TouristSpot touristSpot = db.TouristSpots.Find(id);
-            if (touristSpot == null)
+            Restaurent restaurent = db.Restaurents.Find(id);
+            if (restaurent == null)
             {
                 return HttpNotFound();
             }
-            return View(touristSpot);
+            ViewBag.TouristSpotId = new SelectList(db.TouristSpots, "TouristSpotId", "Name", restaurent.TouristSpotId);
+            return View(restaurent);
         }
 
-        // POST: TouristSpots/Edit/5
+        // POST: Restaurents/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "TouristSpotId,Name,Content,Destination,ImageUrl")] TouristSpot touristSpot)
+        public ActionResult Edit([Bind(Include = "RestaurentId,TouristSpotId,ImageUrl,Content,Name,Price,Quality,Location")] Restaurent restaurent)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(touristSpot).State = EntityState.Modified;
+                db.Entry(restaurent).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(touristSpot);
+            ViewBag.TouristSpotId = new SelectList(db.TouristSpots, "TouristSpotId", "Name", restaurent.TouristSpotId);
+            return View(restaurent);
         }
 
-        // GET: TouristSpots/Delete/5
+        // GET: Restaurents/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TouristSpot touristSpot = db.TouristSpots.Find(id);
-            if (touristSpot == null)
+            Restaurent restaurent = db.Restaurents.Find(id);
+            if (restaurent == null)
             {
                 return HttpNotFound();
             }
-            return View(touristSpot);
+            return View(restaurent);
         }
 
-        // POST: TouristSpots/Delete/5
+        // POST: Restaurents/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            TouristSpot touristSpot = db.TouristSpots.Find(id);
-            db.TouristSpots.Remove(touristSpot);
+            Restaurent restaurent = db.Restaurents.Find(id);
+            db.Restaurents.Remove(restaurent);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

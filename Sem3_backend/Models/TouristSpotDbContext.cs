@@ -11,6 +11,8 @@ namespace Sem3_backend.Models
         public TouristSpotDbContext() : base("name=DefaultConnection")
         {
             Database.SetInitializer(new DbInitializer());
+            this.Configuration.LazyLoadingEnabled = false;
+            this.Configuration.ProxyCreationEnabled = false;
         }
 
         public DbSet<Hotel> Hotels { get; set; }
@@ -20,6 +22,7 @@ namespace Sem3_backend.Models
         public DbSet<Transport> Transports { get; set; }
         public DbSet<Travel> Travels { get; set; }
         public DbSet<FeedBack> FeedBacks { get; set; }
+
 
     }
 }

@@ -10,108 +10,107 @@ using Sem3_backend.Models;
 
 namespace Sem3_backend.Controllers
 {
-    [Authorize]
-    public class TouristSpotsController : Controller
+    public class FeedBacksController : Controller
     {
         private TouristSpotDbContext db = new TouristSpotDbContext();
 
-        // GET: TouristSpots
+        // GET: FeedBacks
         public ActionResult Index()
         {
-            return View(db.TouristSpots.ToList());
+            return View(db.FeedBacks.ToList());
         }
 
-        // GET: TouristSpots/Details/5
+        // GET: FeedBacks/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TouristSpot touristSpot = db.TouristSpots.Find(id);
-            if (touristSpot == null)
+            FeedBack feedBack = db.FeedBacks.Find(id);
+            if (feedBack == null)
             {
                 return HttpNotFound();
             }
-            return View(touristSpot);
+            return View(feedBack);
         }
 
-        // GET: TouristSpots/Create
+        // GET: FeedBacks/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: TouristSpots/Create
+        // POST: FeedBacks/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "TouristSpotId,Name,Content,Destination,ImageUrl")] TouristSpot touristSpot)
+        public ActionResult Create([Bind(Include = "Id,Content,UserEmail")] FeedBack feedBack)
         {
             if (ModelState.IsValid)
             {
-                db.TouristSpots.Add(touristSpot);
+                db.FeedBacks.Add(feedBack);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(touristSpot);
+            return View(feedBack);
         }
 
-        // GET: TouristSpots/Edit/5
+        // GET: FeedBacks/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TouristSpot touristSpot = db.TouristSpots.Find(id);
-            if (touristSpot == null)
+            FeedBack feedBack = db.FeedBacks.Find(id);
+            if (feedBack == null)
             {
                 return HttpNotFound();
             }
-            return View(touristSpot);
+            return View(feedBack);
         }
 
-        // POST: TouristSpots/Edit/5
+        // POST: FeedBacks/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "TouristSpotId,Name,Content,Destination,ImageUrl")] TouristSpot touristSpot)
+        public ActionResult Edit([Bind(Include = "Id,Content,UserEmail")] FeedBack feedBack)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(touristSpot).State = EntityState.Modified;
+                db.Entry(feedBack).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(touristSpot);
+            return View(feedBack);
         }
 
-        // GET: TouristSpots/Delete/5
+        // GET: FeedBacks/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TouristSpot touristSpot = db.TouristSpots.Find(id);
-            if (touristSpot == null)
+            FeedBack feedBack = db.FeedBacks.Find(id);
+            if (feedBack == null)
             {
                 return HttpNotFound();
             }
-            return View(touristSpot);
+            return View(feedBack);
         }
 
-        // POST: TouristSpots/Delete/5
+        // POST: FeedBacks/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            TouristSpot touristSpot = db.TouristSpots.Find(id);
-            db.TouristSpots.Remove(touristSpot);
+            FeedBack feedBack = db.FeedBacks.Find(id);
+            db.FeedBacks.Remove(feedBack);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
