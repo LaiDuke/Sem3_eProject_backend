@@ -170,6 +170,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\FeedBacksController.cs" />
+    <Compile Include="API\HotelsController.cs" />
+    <Compile Include="API\ResortsController.cs" />
+    <Compile Include="API\RestaurentsController.cs" />
+    <Compile Include="API\TouristSpotsController.cs" />
+    <Compile Include="API\TransportsController.cs" />
+    <Compile Include="API\TravelsController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -177,14 +184,35 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\FeedBacksController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\HotelsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ResortsController.cs" />
+    <Compile Include="Controllers\RestaurentsController.cs" />
+    <Compile Include="Controllers\TouristSpotsController.cs" />
+    <Compile Include="Controllers\TransportsController.cs" />
+    <Compile Include="Controllers\TravelsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202011191910467_InitialCreate.cs" />
+    <Compile Include="Migrations\202011191910467_InitialCreate.Designer.cs">
+      <DependentUpon>202011191910467_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\DbInitializer.cs" />
+    <Compile Include="Models\FeedBack.cs" />
+    <Compile Include="Models\Hotel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Resort.cs" />
+    <Compile Include="Models\Restaurent.cs" />
+    <Compile Include="Models\TouristSpot.cs" />
+    <Compile Include="Models\TouristSpotDbContext.cs" />
+    <Compile Include="Models\Transport.cs" />
+    <Compile Include="Models\Travel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -272,6 +300,41 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\TouristSpots\Create.cshtml" />
+    <Content Include="Views\TouristSpots\Delete.cshtml" />
+    <Content Include="Views\TouristSpots\Details.cshtml" />
+    <Content Include="Views\TouristSpots\Edit.cshtml" />
+    <Content Include="Views\TouristSpots\Index.cshtml" />
+    <Content Include="Views\Transports\Create.cshtml" />
+    <Content Include="Views\Transports\Delete.cshtml" />
+    <Content Include="Views\Transports\Details.cshtml" />
+    <Content Include="Views\Transports\Edit.cshtml" />
+    <Content Include="Views\Transports\Index.cshtml" />
+    <Content Include="Views\Travels\Create.cshtml" />
+    <Content Include="Views\Travels\Delete.cshtml" />
+    <Content Include="Views\Travels\Details.cshtml" />
+    <Content Include="Views\Travels\Edit.cshtml" />
+    <Content Include="Views\Travels\Index.cshtml" />
+    <Content Include="Views\FeedBacks\Create.cshtml" />
+    <Content Include="Views\FeedBacks\Delete.cshtml" />
+    <Content Include="Views\FeedBacks\Details.cshtml" />
+    <Content Include="Views\FeedBacks\Edit.cshtml" />
+    <Content Include="Views\FeedBacks\Index.cshtml" />
+    <Content Include="Views\Hotels\Create.cshtml" />
+    <Content Include="Views\Hotels\Delete.cshtml" />
+    <Content Include="Views\Hotels\Details.cshtml" />
+    <Content Include="Views\Hotels\Edit.cshtml" />
+    <Content Include="Views\Hotels\Index.cshtml" />
+    <Content Include="Views\Resorts\Create.cshtml" />
+    <Content Include="Views\Resorts\Delete.cshtml" />
+    <Content Include="Views\Resorts\Details.cshtml" />
+    <Content Include="Views\Resorts\Edit.cshtml" />
+    <Content Include="Views\Resorts\Index.cshtml" />
+    <Content Include="Views\Restaurents\Create.cshtml" />
+    <Content Include="Views\Restaurents\Delete.cshtml" />
+    <Content Include="Views\Restaurents\Details.cshtml" />
+    <Content Include="Views\Restaurents\Edit.cshtml" />
+    <Content Include="Views\Restaurents\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -283,6 +346,11 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202011191910467_InitialCreate.resx">
+      <DependentUpon>202011191910467_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
