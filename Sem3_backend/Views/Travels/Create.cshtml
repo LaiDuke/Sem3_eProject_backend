@@ -24,8 +24,9 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ImageUrl, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ImageUrl, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ImageUrl, "", new { @class = "text-danger" })
+                <input type="file" class="form-control btn-info btn-sm" style="" name="image">
+                <img src="" alt="" id="image-preview" style="width: 100px">
+                @Html.HiddenFor(model => model.ImageUrl)
             </div>
         </div>
 
@@ -67,4 +68,5 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/JavaScript.js")
 }
