@@ -24,8 +24,9 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ImageUrl, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ImageUrl, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ImageUrl, "", new { @class = "text-danger" })
+                <input type="file" class="form-control btn-info btn-sm" style="" name="image">
+                <img src="" alt="" id="image-preview" style="width: 100px">
+                @Html.HiddenFor(model => model.ImageUrl)
             </div>
         </div>
 
@@ -40,8 +41,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Content, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Content, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
+                <textarea name="editor1" id="editor1">&lt;p&gt;Initial editor content.&lt;/p&gt;</textarea>
+                @Html.HiddenFor(model => model.Content, new { htmlAttributes = new { @class = "form-control" } })
             </div>
         </div>
 
@@ -67,4 +68,7 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/JavaScript.js")
+    @Scripts.Render("~/ckeditor/ckeditor.js")
+    @Scripts.Render("~/Scripts/getCkEditor.js")
 }

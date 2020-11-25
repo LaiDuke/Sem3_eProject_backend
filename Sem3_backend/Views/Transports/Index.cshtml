@@ -19,7 +19,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Travel.ImageUrl)
+            @Html.DisplayNameFor(model => model.Travel.Name)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Name)
@@ -27,33 +27,26 @@
         <th>
             @Html.DisplayNameFor(model => model.ImageUrl)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Content)
-        </th>
         <th></th>
     </tr>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Travel.ImageUrl)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ImageUrl)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Content)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.TransportId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.TransportId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.TransportId })
-            </td>
-        </tr>
-    }
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Travel.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            <img src="http://res.cloudinary.com/a123abc/image/upload/@item.ImageUrl" style="width:150px;" />
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.TransportId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.TransportId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.TransportId })
+        </td>
+    </tr>
+}
 
 </table>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace Sem3_backend.Models
 {
@@ -11,6 +12,7 @@ namespace Sem3_backend.Models
         public string ImageUrl { get; set; }
 
         public string Name { get; set; }
+        [AllowHtml]
         public string Content { get; set; }
         public int TouristSportId { get; set; }
 
