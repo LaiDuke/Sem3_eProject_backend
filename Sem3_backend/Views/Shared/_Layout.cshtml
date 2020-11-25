@@ -27,67 +27,6 @@
                 <div class="search-suggestions-group">
                     <div class="ssg-header">
                         <div class="ssg-icon">
-                            <div class="os-icon os-icon-box"></div>
-                        </div>
-                        <div class="ssg-name">
-                            Projects
-                        </div>
-                        <div class="ssg-info">
-                            24 Total
-                        </div>
-                    </div>
-                    <div class="ssg-content">
-                        <div class="ssg-items ssg-items-boxed">
-                            <a class="ssg-item" href="users_profile_big.html">
-                                <div class="item-media" style="background-image: url(../../Content/Images/company6.png)"></div>
-                                <div class="item-name">
-                                    Integ<span>ration</span> with API
-                                </div>
-                            </a><a class="ssg-item" href="users_profile_big.html">
-                                <div class="item-media" style="background-image: url(../../Content/Images/company7.png)"></div>
-                                <div class="item-name">
-                                    Deve<span>lopm</span>ent Project
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="search-suggestions-group">
-                    <div class="ssg-header">
-                        <div class="ssg-icon">
-                            <div class="os-icon os-icon-users"></div>
-                        </div>
-                        <div class="ssg-name">
-                            Customers
-                        </div>
-                        <div class="ssg-info">
-                            12 Total
-                        </div>
-                    </div>
-                    <div class="ssg-content">
-                        <div class="ssg-items ssg-items-list">
-                            <a class="ssg-item" href="users_profile_big.html">
-                                <div class="item-media" style="background-image: url(../../Content/Images/avatar1.jpg)"></div>
-                                <div class="item-name">
-                                    John Ma<span>yer</span>s
-                                </div>
-                            </a><a class="ssg-item" href="users_profile_big.html">
-                                <div class="item-media" style="background-image: url(../../Content/Images/avatar2.jpg)"></div>
-                                <div class="item-name">
-                                    Th<span>omas</span> Mullier
-                                </div>
-                            </a><a class="ssg-item" href="users_profile_big.html">
-                                <div class="item-media" style="background-image: url(../../Content/Images/avatar3.jpg)"></div>
-                                <div class="item-name">
-                                    Kim C<span>olli</span>ns
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="search-suggestions-group">
-                    <div class="ssg-header">
-                        <div class="ssg-icon">
                             <div class="os-icon os-icon-folder"></div>
                         </div>
                         <div class="ssg-name">
@@ -145,7 +84,7 @@
             -------------------->
             <div class="menu-mobile menu-activated-on-click color-scheme-dark">
                 <div class="mm-logo-buttons-w">
-                    <a class="mm-logo" href="index.html"><img src="../../Content/Images/logo.png"><span>Clean Admin</span></a>
+                    <a class="mm-logo" href="@Url.Action("Index","Home")"><img src="../../Content/Images/logo.png"><span>Clean Admin</span></a>
                     <div class="mm-buttons">
                         <div class="content-panel-open">
                             <div class="os-icon os-icon-grid-circles"></div>
@@ -331,7 +270,7 @@
             -------------------->
             <div class="menu-w color-scheme-light color-style-transparent menu-position-side menu-side-left menu-layout-compact sub-menu-style-over sub-menu-color-bright selected-menu-color-light menu-activated-on-hover menu-has-selected-link">
                 <div class="logo-w">
-                    <a class="logo" href="index.html">
+                    <a class="logo" href="@Url.Action("Index","Home")">
                         <div class="logo-element"></div>
                         <div class="logo-label">
                             Clean Admin
@@ -397,7 +336,11 @@
                                     <a href="#"><i class="os-icon os-icon-others-43"></i><span>Notifications</span></a>
                                 </li>
                                 <li>
-                                    <a href="#"><i class="os-icon os-icon-signs-11"></i><span>Logout</span></a>
+                                    @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        <a href="javascript:document.getElementById('logoutForm').submit()"><i class="os-icon os-icon-signs-11"></i><span>Log out</span></a>
+                                    }                                    
                                 </li>
                             </ul>
                         </div>
@@ -1021,7 +964,11 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#"><i class="os-icon os-icon-signs-11"></i><span>Logout</span></a>
+                                            @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                                            {
+                                                @Html.AntiForgeryToken()
+                                                <a href="javascript:document.getElementById('logoutForm').submit()"><i class="os-icon os-icon-signs-11"></i><span>Log out</span></a>
+                                            }
                                         </li>
                                     </ul>
                                 </div>

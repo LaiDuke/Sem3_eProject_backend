@@ -5,7 +5,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+@section Bredcrumbs {
+    <li class="breadcrumb-item">
+        <a href="@Url.Action("Index","Travels")">Travels List</a>
+    </li>
+}
+
+<h2>Travels List</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -27,26 +33,27 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ImageUrl)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Content)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TouristSportId)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.TravelId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.TravelId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.TravelId })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImageUrl)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Content)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TouristSportId)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.TravelId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.TravelId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.TravelId })
+            </td>
+        </tr>
+    }
 
 </table>
