@@ -19,14 +19,15 @@
             <h4 class="auth-header">
                 Create new account
             </h4>
-            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
+            @using (Html.BeginForm("Register", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
             {
                 @Html.AntiForgeryToken()
-        <div class="form-group">
-            @Html.LabelFor(m => m.Email)
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Enter Email" })
-            <div class="pre-icon os-icon os-icon-email-2-at2"></div>
-        </div>
+                @Html.ValidationSummary("", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Email)
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Enter Email" })
+                    <div class="pre-icon os-icon os-icon-email-2-at2"></div>
+                </div>
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
