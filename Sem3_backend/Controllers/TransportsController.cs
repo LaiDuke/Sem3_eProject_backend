@@ -10,7 +10,6 @@ using Sem3_backend.Models;
 
 namespace Sem3_backend.Controllers
 {
-    [Authorize]
     public class TransportsController : Controller
     {
         private TouristSpotDbContext db = new TouristSpotDbContext();
@@ -40,7 +39,7 @@ namespace Sem3_backend.Controllers
         // GET: Transports/Create
         public ActionResult Create()
         {
-            ViewBag.TravelId = new SelectList(db.Travels, "TravelId", "ImageUrl");
+            ViewBag.TravelID = new SelectList(db.Travels, "TravelID", "ImageUrl");
             return View();
         }
 
@@ -49,7 +48,7 @@ namespace Sem3_backend.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "TransportId,TravelId,Name,ImageUrl,Content")] Transport transport)
+        public ActionResult Create([Bind(Include = "TransportID,Name,ImageUrl,Content,TravelID")] Transport transport)
         {
             if (ModelState.IsValid)
             {
@@ -58,7 +57,7 @@ namespace Sem3_backend.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.TravelId = new SelectList(db.Travels, "TravelId", "ImageUrl", transport.TravelId);
+            ViewBag.TravelID = new SelectList(db.Travels, "TravelID", "ImageUrl", transport.TravelID);
             return View(transport);
         }
 
@@ -74,7 +73,7 @@ namespace Sem3_backend.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.TravelId = new SelectList(db.Travels, "TravelId", "ImageUrl", transport.TravelId);
+            ViewBag.TravelID = new SelectList(db.Travels, "TravelID", "ImageUrl", transport.TravelID);
             return View(transport);
         }
 
@@ -83,7 +82,7 @@ namespace Sem3_backend.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "TransportId,TravelId,Name,ImageUrl,Content")] Transport transport)
+        public ActionResult Edit([Bind(Include = "TransportID,Name,ImageUrl,Content,TravelID")] Transport transport)
         {
             if (ModelState.IsValid)
             {
@@ -91,7 +90,7 @@ namespace Sem3_backend.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.TravelId = new SelectList(db.Travels, "TravelId", "ImageUrl", transport.TravelId);
+            ViewBag.TravelID = new SelectList(db.Travels, "TravelID", "ImageUrl", transport.TravelID);
             return View(transport);
         }
 

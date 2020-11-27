@@ -9,7 +9,7 @@ namespace Sem3_backend.Models
     public class TouristSpot
     {
        
-        public int TouristSpotId { get; set; }
+        public int TouristSpotID { get; set; }
         public string Name { get; set; }
         [AllowHtml]
         public string Content { get; set; }

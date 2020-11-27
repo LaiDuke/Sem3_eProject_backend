@@ -10,7 +10,6 @@ using Sem3_backend.Models;
 
 namespace Sem3_backend.Controllers
 {
-    [Authorize]
     public class ResortsController : Controller
     {
         private TouristSpotDbContext db = new TouristSpotDbContext();
@@ -40,7 +39,7 @@ namespace Sem3_backend.Controllers
         // GET: Resorts/Create
         public ActionResult Create()
         {
-            ViewBag.TouristSpotId = new SelectList(db.TouristSpots, "TouristSpotId", "Name");
+            ViewBag.TouristSpotID = new SelectList(db.TouristSpots, "TouristSpotID", "Name");
             return View();
         }
 
@@ -49,7 +48,7 @@ namespace Sem3_backend.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ResortId,TouristSpotId,ImageUrl,Content,Name,Price,Quality,Location")] Resort resort)
+        public ActionResult Create([Bind(Include = "ResortID,ImageUrl,Content,Name,Price,Quality,Location,TouristSpotID")] Resort resort)
         {
             if (ModelState.IsValid)
             {
@@ -58,7 +57,7 @@ namespace Sem3_backend.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.TouristSpotId = new SelectList(db.TouristSpots, "TouristSpotId", "Name", resort.TouristSpotId);
+            ViewBag.TouristSpotID = new SelectList(db.TouristSpots, "TouristSpotID", "Name", resort.TouristSpotID);
             return View(resort);
         }
 
@@ -74,7 +73,7 @@ namespace Sem3_backend.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.TouristSpotId = new SelectList(db.TouristSpots, "TouristSpotId", "Name", resort.TouristSpotId);
+            ViewBag.TouristSpotID = new SelectList(db.TouristSpots, "TouristSpotID", "Name", resort.TouristSpotID);
             return View(resort);
         }
 
@@ -83,7 +82,7 @@ namespace Sem3_backend.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ResortId,TouristSpotId,ImageUrl,Content,Name,Price,Quality,Location")] Resort resort)
+        public ActionResult Edit([Bind(Include = "ResortID,ImageUrl,Content,Name,Price,Quality,Location,TouristSpotID")] Resort resort)
         {
             if (ModelState.IsValid)
             {
@@ -91,7 +90,7 @@ namespace Sem3_backend.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.TouristSpotId = new SelectList(db.TouristSpots, "TouristSpotId", "Name", resort.TouristSpotId);
+            ViewBag.TouristSpotID = new SelectList(db.TouristSpots, "TouristSpotID", "Name", resort.TouristSpotID);
             return View(resort);
         }
 

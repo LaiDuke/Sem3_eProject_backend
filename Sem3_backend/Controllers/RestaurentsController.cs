@@ -10,7 +10,6 @@ using Sem3_backend.Models;
 
 namespace Sem3_backend.Controllers
 {
-    [Authorize]
     public class RestaurentsController : Controller
     {
         private TouristSpotDbContext db = new TouristSpotDbContext();
@@ -40,7 +39,7 @@ namespace Sem3_backend.Controllers
         // GET: Restaurents/Create
         public ActionResult Create()
         {
-            ViewBag.TouristSpotId = new SelectList(db.TouristSpots, "TouristSpotId", "Name");
+            ViewBag.TouristSpotID = new SelectList(db.TouristSpots, "TouristSpotID", "Name");
             return View();
         }
 
@@ -49,7 +48,7 @@ namespace Sem3_backend.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "RestaurentId,TouristSpotId,ImageUrl,Content,Name,Price,Quality,Location")] Restaurent restaurent)
+        public ActionResult Create([Bind(Include = "RestaurentID,ImageUrl,Content,Name,Price,Quality,Location,TouristSpotID")] Restaurent restaurent)
         {
             if (ModelState.IsValid)
             {
@@ -58,7 +57,7 @@ namespace Sem3_backend.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.TouristSpotId = new SelectList(db.TouristSpots, "TouristSpotId", "Name", restaurent.TouristSpotId);
+            ViewBag.TouristSpotID = new SelectList(db.TouristSpots, "TouristSpotID", "Name", restaurent.TouristSpotID);
             return View(restaurent);
         }
 
@@ -74,7 +73,7 @@ namespace Sem3_backend.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.TouristSpotId = new SelectList(db.TouristSpots, "TouristSpotId", "Name", restaurent.TouristSpotId);
+            ViewBag.TouristSpotID = new SelectList(db.TouristSpots, "TouristSpotID", "Name", restaurent.TouristSpotID);
             return View(restaurent);
         }
 
@@ -83,7 +82,7 @@ namespace Sem3_backend.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "RestaurentId,TouristSpotId,ImageUrl,Content,Name,Price,Quality,Location")] Restaurent restaurent)
+        public ActionResult Edit([Bind(Include = "RestaurentID,ImageUrl,Content,Name,Price,Quality,Location,TouristSpotID")] Restaurent restaurent)
         {
             if (ModelState.IsValid)
             {
@@ -91,7 +90,7 @@ namespace Sem3_backend.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.TouristSpotId = new SelectList(db.TouristSpots, "TouristSpotId", "Name", restaurent.TouristSpotId);
+            ViewBag.TouristSpotID = new SelectList(db.TouristSpots, "TouristSpotID", "Name", restaurent.TouristSpotID);
             return View(restaurent);
         }
 

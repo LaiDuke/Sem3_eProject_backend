@@ -8,8 +8,8 @@ namespace Sem3_backend.Models
 {
     public class Restaurent
     {
-        public int RestaurentId { get; set; }
-        public int TouristSpotId { get; set; }
+        public int RestaurentID { get; set; }
+        
         public string ImageUrl { get; set; }
         [AllowHtml]
         public string Content { get; set; }
@@ -17,6 +17,7 @@ namespace Sem3_backend.Models
         public double Price { get; set; }
         public double Quality { get; set; }
         public string Location { get; set; }
+        public int TouristSpotID { get; set; }
         public TouristSpot TouristSpot { get; set; }
     }
 }

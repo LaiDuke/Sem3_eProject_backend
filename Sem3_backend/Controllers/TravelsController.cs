@@ -10,7 +10,6 @@ using Sem3_backend.Models;
 
 namespace Sem3_backend.Controllers
 {
-    [Authorize]
     public class TravelsController : Controller
     {
         private TouristSpotDbContext db = new TouristSpotDbContext();
@@ -47,7 +46,7 @@ namespace Sem3_backend.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "TravelId,ImageUrl,Name,Content,TouristSportId")] Travel travel)
+        public ActionResult Create([Bind(Include = "TravelID,ImageUrl,Name,Content,TouristSportID")] Travel travel)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +78,7 @@ namespace Sem3_backend.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "TravelId,ImageUrl,Name,Content,TouristSportId")] Travel travel)
+        public ActionResult Edit([Bind(Include = "TravelID,ImageUrl,Name,Content,TouristSportID")] Travel travel)
         {
             if (ModelState.IsValid)
             {

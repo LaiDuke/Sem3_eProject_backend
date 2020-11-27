@@ -17,7 +17,7 @@ namespace Sem3_backend.Models
 
             List<Restaurent> restaurents = new List<Restaurent>()
             {
-                new Restaurent(){ Name="Jame",ImageUrl="aa",Content="bb",TouristSpotId=1},
+                
   
             };
 

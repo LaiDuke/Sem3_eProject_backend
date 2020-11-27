@@ -5,13 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@section Bredcrumbs{
-    <li class="breadcrumb-item">
-        <a href="@Url.Action("Index","Resorts")">Resorts List</a>
-    </li>
-}
-
-<h2>Resorts List</h2>
+<h2>Index</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -23,6 +17,9 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.ImageUrl)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Content)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Name)
@@ -48,6 +45,9 @@
             <img src="http://res.cloudinary.com/a123abc/image/upload/@item.ImageUrl" style="width:150px;" />
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.Content)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
@@ -60,12 +60,11 @@
             @Html.DisplayFor(modelItem => item.Location)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ResortId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ResortId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ResortId })
+            @Html.ActionLink("Edit", "Edit", new { id=item.ResortID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ResortID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ResortID })
         </td>
     </tr>
 }
-
 
 </table>
