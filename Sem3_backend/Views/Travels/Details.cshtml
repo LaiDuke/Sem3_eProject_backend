@@ -5,12 +5,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@section Bredcrumbs{
-    <li class="breadcrumb-item">
-        <a href="">Travel Details</a>
-    </li>
-}
-
 <h2>Details</h2>
 
 <div>
@@ -42,16 +36,16 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.TouristSportId)
+            @Html.DisplayNameFor(model => model.TouristSportID)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.TouristSportId)
+            @Html.DisplayFor(model => model.TouristSportID)
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.TravelId }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.TravelID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

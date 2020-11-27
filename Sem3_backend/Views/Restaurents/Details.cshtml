@@ -5,13 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@section Bredcrumbs{
-    <li class="breadcrumb-item">
-        <a href="">Restaurent Details</a>
-    </li>
-}
-
-<h2>Restaurent Details</h2>
+<h2>Details</h2>
 
 <div>
     <h4>Restaurent</h4>
@@ -76,6 +70,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.RestaurentId }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.RestaurentID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
