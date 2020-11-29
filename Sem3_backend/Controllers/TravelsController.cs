@@ -15,14 +15,13 @@ namespace Sem3_backend.Controllers
         private TouristSpotDbContext db = new TouristSpotDbContext();
 
         // GET: Travels
-        [AllowAnonymous]
         public ActionResult Index()
         {
-            return View(db.Travels.ToList());
+            var travels = db.Travels.Include(t => t.TouristSpot);
+            return View(travels.ToList());
         }
 
         // GET: Travels/Details/5
-        [AllowAnonymous]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -40,6 +39,7 @@ namespace Sem3_backend.Controllers
         // GET: Travels/Create
         public ActionResult Create()
         {
+            ViewBag.TouristSpotID = new SelectList(db.TouristSpots, "TouristSpotID", "Name");
             return View();
         }
 
@@ -48,7 +48,7 @@ namespace Sem3_backend.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "TravelID,ImageUrl,Name,Content,TouristSportID")] Travel travel)
+        public ActionResult Create([Bind(Include = "TravelID,ImageUrl,Name,Content,TouristSpotID")] Travel travel)
         {
             if (ModelState.IsValid)
             {
@@ -57,6 +57,7 @@ namespace Sem3_backend.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.TouristSpotID = new SelectList(db.TouristSpots, "TouristSpotID", "Name", travel.TouristSpotID);
             return View(travel);
         }
 
@@ -72,6 +73,7 @@ namespace Sem3_backend.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.TouristSpotID = new SelectList(db.TouristSpots, "TouristSpotID", "Name", travel.TouristSpotID);
             return View(travel);
         }
 
@@ -80,7 +82,7 @@ namespace Sem3_backend.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "TravelID,ImageUrl,Name,Content,TouristSportID")] Travel travel)
+        public ActionResult Edit([Bind(Include = "TravelID,ImageUrl,Name,Content,TouristSpotID")] Travel travel)
         {
             if (ModelState.IsValid)
             {
@@ -88,6 +90,7 @@ namespace Sem3_backend.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.TouristSpotID = new SelectList(db.TouristSpots, "TouristSpotID", "Name", travel.TouristSpotID);
             return View(travel);
         }
 
