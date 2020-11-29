@@ -9,7 +9,7 @@ namespace Sem3_backend.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(Sem3_backend.Models.TouristSpotDbContext context)

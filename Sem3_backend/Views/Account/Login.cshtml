@@ -23,6 +23,7 @@
             @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
             {
                 @Html.AntiForgeryToken()
+                @Html.ValidationSummary("", new { @class = "text-danger" })
                 <div class="form-group">
                     @Html.LabelFor(m => m.Email)
                     @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Enter your Email" })
