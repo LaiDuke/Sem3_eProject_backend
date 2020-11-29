@@ -41,7 +41,7 @@ namespace Sem3_backend.Controllers
         // GET: Transports/Create
         public ActionResult Create()
         {
-            ViewBag.TravelID = new SelectList(db.Travels, "TravelID", "ImageUrl");
+            ViewBag.TravelID = new SelectList(db.Travels, "TravelID", "Name");
             return View();
         }
 

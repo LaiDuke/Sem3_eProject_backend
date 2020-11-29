@@ -14,7 +14,7 @@ namespace Sem3_backend.Models
         public string Name { get; set; }
         [AllowHtml]
         public string Content { get; set; }
-        public int TouristSportID { get; set; }
+        public int TouristSpotID { get; set; }
 
         public TouristSpot TouristSpot { get; set; }
         public virtual ICollection<Transport> Transports { get; set; }
