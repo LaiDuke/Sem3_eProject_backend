@@ -15,6 +15,7 @@ namespace Sem3_backend.Controllers
         private TouristSpotDbContext db = new TouristSpotDbContext();
 
         // GET: Resorts
+        [AllowAnonymous]
         public ActionResult Index()
         {
             var resorts = db.Resorts.Include(r => r.TouristSpot);
@@ -22,6 +23,7 @@ namespace Sem3_backend.Controllers
         }
 
         // GET: Resorts/Details/5
+        [AllowAnonymous]
         public ActionResult Details(int? id)
         {
             if (id == null)
