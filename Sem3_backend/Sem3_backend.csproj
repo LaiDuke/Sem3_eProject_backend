@@ -173,6 +173,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="API\FeedBacksController.cs" />
+    <Compile Include="API\HotelsController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -557,8 +558,18 @@
     <Content Include="Content\Images\logo.png" />
     <Content Include="Content\Images\logo2.png" />
     <Content Include="favicon.ico" />
+<<<<<<< HEAD
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+=======
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+>>>>>>> b85137555ad722627d5467f2f11faffff1211d38
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
@@ -579,6 +590,7 @@
     <Content Include="ckeditor\samples\toolbarconfigurator\font\fontello.woff" />
     <Content Include="ckeditor\samples\toolbarconfigurator\lib\codemirror\LICENSE" />
     <Content Include="ckeditor\skins\moono-lisa\readme.md" />
+    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\Custom js\ckeditor.js" />
@@ -589,6 +601,8 @@
     <Content Include="Scripts\getCkEditor.js" />
     <Content Include="Scripts\JavaScript.js" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\getCkEditor.js" />
+    <Content Include="Scripts\JavaScript.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -644,11 +658,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <Content Include="Views\Hotels\Create.cshtml" />
-    <Content Include="Views\Hotels\Delete.cshtml" />
-    <Content Include="Views\Hotels\Details.cshtml" />
-    <Content Include="Views\Hotels\Edit.cshtml" />
-    <Content Include="Views\Hotels\Index.cshtml" />
     <Content Include="Views\TouristSpots\Create.cshtml" />
     <Content Include="Views\TouristSpots\Delete.cshtml" />
     <Content Include="Views\TouristSpots\Details.cshtml" />
@@ -669,6 +678,16 @@
     <Content Include="Views\Travels\Details.cshtml" />
     <Content Include="Views\Travels\Edit.cshtml" />
     <Content Include="Views\Travels\Index.cshtml" />
+    <Content Include="Views\FeedBacks\Create.cshtml" />
+    <Content Include="Views\FeedBacks\Delete.cshtml" />
+    <Content Include="Views\FeedBacks\Details.cshtml" />
+    <Content Include="Views\FeedBacks\Edit.cshtml" />
+    <Content Include="Views\FeedBacks\Index.cshtml" />
+    <Content Include="Views\Hotels\Create.cshtml" />
+    <Content Include="Views\Hotels\Delete.cshtml" />
+    <Content Include="Views\Hotels\Details.cshtml" />
+    <Content Include="Views\Hotels\Edit.cshtml" />
+    <Content Include="Views\Hotels\Index.cshtml" />
     <Content Include="Views\Resorts\Create.cshtml" />
     <Content Include="Views\Resorts\Delete.cshtml" />
     <Content Include="Views\Resorts\Details.cshtml" />
@@ -687,6 +706,22 @@
     <EmbeddedResource Include="Migrations\202011270616105_touristDB.resx">
       <DependentUpon>202011270616105_touristDB.cs</DependentUpon>
     </EmbeddedResource>
+    <Content Include="Views\Restaurents\Create.cshtml" />
+    <Content Include="Views\Restaurents\Delete.cshtml" />
+    <Content Include="Views\Restaurents\Details.cshtml" />
+    <Content Include="Views\Restaurents\Edit.cshtml" />
+    <Content Include="Views\Restaurents\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

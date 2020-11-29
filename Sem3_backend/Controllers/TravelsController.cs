@@ -15,12 +15,14 @@ namespace Sem3_backend.Controllers
         private TouristSpotDbContext db = new TouristSpotDbContext();
 
         // GET: Travels
+        [AllowAnonymous]
         public ActionResult Index()
         {
             return View(db.Travels.ToList());
         }
 
         // GET: Travels/Details/5
+        [AllowAnonymous]
         public ActionResult Details(int? id)
         {
             if (id == null)

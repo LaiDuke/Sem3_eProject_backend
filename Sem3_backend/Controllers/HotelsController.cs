@@ -10,6 +10,7 @@ using Sem3_backend.Models;
 
 namespace Sem3_backend.Controllers
 {
+
     public class HotelsController : Controller
     {
         private TouristSpotDbContext db = new TouristSpotDbContext();
