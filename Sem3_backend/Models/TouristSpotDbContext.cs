@@ -10,9 +10,9 @@ namespace Sem3_backend.Models
     {
         public TouristSpotDbContext() : base("name=DefaultConnection")
         {
-            Database.SetInitializer(new DbInitializer());
-            this.Configuration.LazyLoadingEnabled = false;
-            this.Configuration.ProxyCreationEnabled = false;
+            //Database.SetInitializer(new DbInitializer());
+            //this.Configuration.LazyLoadingEnabled = false;
+            //this.Configuration.ProxyCreationEnabled = false;
         }
 
         public DbSet<Hotel> Hotels { get; set; }
