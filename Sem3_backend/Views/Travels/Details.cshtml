@@ -2,7 +2,6 @@
 
 @{
     ViewBag.Title = "Details";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Details</h2>
@@ -11,6 +10,14 @@
     <h4>Travel</h4>
     <hr />
     <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TouristSpot.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TouristSpot.Name)
+        </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.ImageUrl)
         </dt>
@@ -33,14 +40,6 @@
 
         <dd>
             @Html.DisplayFor(model => model.Content)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TouristSportID)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TouristSportID)
         </dd>
 
     </dl>

@@ -675,11 +675,6 @@
     <Content Include="Views\Transports\Details.cshtml" />
     <Content Include="Views\Transports\Edit.cshtml" />
     <Content Include="Views\Transports\Index.cshtml" />
-    <Content Include="Views\Travels\Create.cshtml" />
-    <Content Include="Views\Travels\Delete.cshtml" />
-    <Content Include="Views\Travels\Details.cshtml" />
-    <Content Include="Views\Travels\Edit.cshtml" />
-    <Content Include="Views\Travels\Index.cshtml" />
     <Content Include="Views\FeedBacks\Create.cshtml" />
     <Content Include="Views\FeedBacks\Delete.cshtml" />
     <Content Include="Views\FeedBacks\Details.cshtml" />
@@ -713,6 +708,11 @@
     <Content Include="Views\Restaurents\Details.cshtml" />
     <Content Include="Views\Restaurents\Edit.cshtml" />
     <Content Include="Views\Restaurents\Index.cshtml" />
+    <Content Include="Views\Travels\Create.cshtml" />
+    <Content Include="Views\Travels\Delete.cshtml" />
+    <Content Include="Views\Travels\Details.cshtml" />
+    <Content Include="Views\Travels\Edit.cshtml" />
+    <Content Include="Views\Travels\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
