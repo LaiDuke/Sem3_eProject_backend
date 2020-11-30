@@ -12,45 +12,44 @@ using Sem3_backend.Models;
 
 namespace Sem3_backend.API
 {
-    public class FeedBacksController : ApiController
+    public class TravelsController : ApiController
     {
         private TouristSpotDbContext db = new TouristSpotDbContext();
 
-        [Authorize]
-        // GET: api/FeedBacks
-        public IQueryable<FeedBack> GetFeedBacks()
+        // GET: api/Travels
+        public IQueryable<Travel> GetTravels()
         {
-            return db.FeedBacks;
+            return db.Travels;
         }
-        [Authorize]
-        // GET: api/FeedBacks/5
-        [ResponseType(typeof(FeedBack))]
-        public IHttpActionResult GetFeedBack(int id)
+
+        // GET: api/Travels/5
+        [ResponseType(typeof(Travel))]
+        public IHttpActionResult GetTravel(int id)
         {
-            FeedBack feedBack = db.FeedBacks.Find(id);
-            if (feedBack == null)
+            Travel travel = db.Travels.Find(id);
+            if (travel == null)
             {
                 return NotFound();
             }
 
-            return Ok(feedBack);
+            return Ok(travel);
         }
         [Authorize]
-        // PUT: api/FeedBacks/5
+        // PUT: api/Travels/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutFeedBack(int id, FeedBack feedBack)
+        public IHttpActionResult PutTravel(int id, Travel travel)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != feedBack.Id)
+            if (id != travel.TravelID)
             {
                 return BadRequest();
             }
 
-            db.Entry(feedBack).State = EntityState.Modified;
+            db.Entry(travel).State = EntityState.Modified;
 
             try
             {
@@ -58,7 +57,7 @@ namespace Sem3_backend.API
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!FeedBackExists(id))
+                if (!TravelExists(id))
                 {
                     return NotFound();
                 }
@@ -70,36 +69,36 @@ namespace Sem3_backend.API
 
             return StatusCode(HttpStatusCode.NoContent);
         }
-
-        // POST: api/FeedBacks
-        [ResponseType(typeof(FeedBack))]
-        public IHttpActionResult PostFeedBack(FeedBack feedBack)
+        [Authorize]
+        // POST: api/Travels
+        [ResponseType(typeof(Travel))]
+        public IHttpActionResult PostTravel(Travel travel)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.FeedBacks.Add(feedBack);
+            db.Travels.Add(travel);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = feedBack.Id }, feedBack);
+            return CreatedAtRoute("DefaultApi", new { id = travel.TravelID }, travel);
         }
         [Authorize]
-        // DELETE: api/FeedBacks/5
-        [ResponseType(typeof(FeedBack))]
-        public IHttpActionResult DeleteFeedBack(int id)
+        // DELETE: api/Travels/5
+        [ResponseType(typeof(Travel))]
+        public IHttpActionResult DeleteTravel(int id)
         {
-            FeedBack feedBack = db.FeedBacks.Find(id);
-            if (feedBack == null)
+            Travel travel = db.Travels.Find(id);
+            if (travel == null)
             {
                 return NotFound();
             }
 
-            db.FeedBacks.Remove(feedBack);
+            db.Travels.Remove(travel);
             db.SaveChanges();
 
-            return Ok(feedBack);
+            return Ok(travel);
         }
 
         protected override void Dispose(bool disposing)
@@ -111,9 +110,9 @@ namespace Sem3_backend.API
             base.Dispose(disposing);
         }
 
-        private bool FeedBackExists(int id)
+        private bool TravelExists(int id)
         {
-            return db.FeedBacks.Count(e => e.Id == id) > 0;
+            return db.Travels.Count(e => e.TravelID == id) > 0;
         }
     }
 }

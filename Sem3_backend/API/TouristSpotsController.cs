@@ -12,45 +12,44 @@ using Sem3_backend.Models;
 
 namespace Sem3_backend.API
 {
-    public class FeedBacksController : ApiController
+    public class TouristSpotsController : ApiController
     {
         private TouristSpotDbContext db = new TouristSpotDbContext();
 
-        [Authorize]
-        // GET: api/FeedBacks
-        public IQueryable<FeedBack> GetFeedBacks()
+        // GET: api/TouristSpots
+        public IQueryable<TouristSpot> GetTouristSpots()
         {
-            return db.FeedBacks;
+            return db.TouristSpots;
         }
-        [Authorize]
-        // GET: api/FeedBacks/5
-        [ResponseType(typeof(FeedBack))]
-        public IHttpActionResult GetFeedBack(int id)
+
+        // GET: api/TouristSpots/5
+        [ResponseType(typeof(TouristSpot))]
+        public IHttpActionResult GetTouristSpot(int id)
         {
-            FeedBack feedBack = db.FeedBacks.Find(id);
-            if (feedBack == null)
+            TouristSpot touristSpot = db.TouristSpots.Find(id);
+            if (touristSpot == null)
             {
                 return NotFound();
             }
 
-            return Ok(feedBack);
+            return Ok(touristSpot);
         }
         [Authorize]
-        // PUT: api/FeedBacks/5
+        // PUT: api/TouristSpots/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutFeedBack(int id, FeedBack feedBack)
+        public IHttpActionResult PutTouristSpot(int id, TouristSpot touristSpot)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != feedBack.Id)
+            if (id != touristSpot.TouristSpotID)
             {
                 return BadRequest();
             }
 
-            db.Entry(feedBack).State = EntityState.Modified;
+            db.Entry(touristSpot).State = EntityState.Modified;
 
             try
             {
@@ -58,7 +57,7 @@ namespace Sem3_backend.API
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!FeedBackExists(id))
+                if (!TouristSpotExists(id))
                 {
                     return NotFound();
                 }
@@ -70,36 +69,36 @@ namespace Sem3_backend.API
 
             return StatusCode(HttpStatusCode.NoContent);
         }
-
-        // POST: api/FeedBacks
-        [ResponseType(typeof(FeedBack))]
-        public IHttpActionResult PostFeedBack(FeedBack feedBack)
+        [Authorize]
+        // POST: api/TouristSpots
+        [ResponseType(typeof(TouristSpot))]
+        public IHttpActionResult PostTouristSpot(TouristSpot touristSpot)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.FeedBacks.Add(feedBack);
+            db.TouristSpots.Add(touristSpot);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = feedBack.Id }, feedBack);
+            return CreatedAtRoute("DefaultApi", new { id = touristSpot.TouristSpotID }, touristSpot);
         }
         [Authorize]
-        // DELETE: api/FeedBacks/5
-        [ResponseType(typeof(FeedBack))]
-        public IHttpActionResult DeleteFeedBack(int id)
+        // DELETE: api/TouristSpots/5
+        [ResponseType(typeof(TouristSpot))]
+        public IHttpActionResult DeleteTouristSpot(int id)
         {
-            FeedBack feedBack = db.FeedBacks.Find(id);
-            if (feedBack == null)
+            TouristSpot touristSpot = db.TouristSpots.Find(id);
+            if (touristSpot == null)
             {
                 return NotFound();
             }
 
-            db.FeedBacks.Remove(feedBack);
+            db.TouristSpots.Remove(touristSpot);
             db.SaveChanges();
 
-            return Ok(feedBack);
+            return Ok(touristSpot);
         }
 
         protected override void Dispose(bool disposing)
@@ -111,9 +110,9 @@ namespace Sem3_backend.API
             base.Dispose(disposing);
         }
 
-        private bool FeedBackExists(int id)
+        private bool TouristSpotExists(int id)
         {
-            return db.FeedBacks.Count(e => e.Id == id) > 0;
+            return db.TouristSpots.Count(e => e.TouristSpotID == id) > 0;
         }
     }
 }

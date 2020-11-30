@@ -12,45 +12,44 @@ using Sem3_backend.Models;
 
 namespace Sem3_backend.API
 {
-    public class FeedBacksController : ApiController
+    public class ResortsController : ApiController
     {
         private TouristSpotDbContext db = new TouristSpotDbContext();
 
-        [Authorize]
-        // GET: api/FeedBacks
-        public IQueryable<FeedBack> GetFeedBacks()
+        // GET: api/Resorts
+        public IQueryable<Resort> GetResorts()
         {
-            return db.FeedBacks;
+            return db.Resorts;
         }
-        [Authorize]
-        // GET: api/FeedBacks/5
-        [ResponseType(typeof(FeedBack))]
-        public IHttpActionResult GetFeedBack(int id)
+
+        // GET: api/Resorts/5
+        [ResponseType(typeof(Resort))]
+        public IHttpActionResult GetResort(int id)
         {
-            FeedBack feedBack = db.FeedBacks.Find(id);
-            if (feedBack == null)
+            Resort resort = db.Resorts.Find(id);
+            if (resort == null)
             {
                 return NotFound();
             }
 
-            return Ok(feedBack);
+            return Ok(resort);
         }
         [Authorize]
-        // PUT: api/FeedBacks/5
+        // PUT: api/Resorts/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutFeedBack(int id, FeedBack feedBack)
+        public IHttpActionResult PutResort(int id, Resort resort)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != feedBack.Id)
+            if (id != resort.ResortID)
             {
                 return BadRequest();
             }
 
-            db.Entry(feedBack).State = EntityState.Modified;
+            db.Entry(resort).State = EntityState.Modified;
 
             try
             {
@@ -58,7 +57,7 @@ namespace Sem3_backend.API
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!FeedBackExists(id))
+                if (!ResortExists(id))
                 {
                     return NotFound();
                 }
@@ -70,36 +69,36 @@ namespace Sem3_backend.API
 
             return StatusCode(HttpStatusCode.NoContent);
         }
-
-        // POST: api/FeedBacks
-        [ResponseType(typeof(FeedBack))]
-        public IHttpActionResult PostFeedBack(FeedBack feedBack)
+        [Authorize]
+        // POST: api/Resorts
+        [ResponseType(typeof(Resort))]
+        public IHttpActionResult PostResort(Resort resort)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.FeedBacks.Add(feedBack);
+            db.Resorts.Add(resort);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = feedBack.Id }, feedBack);
+            return CreatedAtRoute("DefaultApi", new { id = resort.ResortID }, resort);
         }
         [Authorize]
-        // DELETE: api/FeedBacks/5
-        [ResponseType(typeof(FeedBack))]
-        public IHttpActionResult DeleteFeedBack(int id)
+        // DELETE: api/Resorts/5
+        [ResponseType(typeof(Resort))]
+        public IHttpActionResult DeleteResort(int id)
         {
-            FeedBack feedBack = db.FeedBacks.Find(id);
-            if (feedBack == null)
+            Resort resort = db.Resorts.Find(id);
+            if (resort == null)
             {
                 return NotFound();
             }
 
-            db.FeedBacks.Remove(feedBack);
+            db.Resorts.Remove(resort);
             db.SaveChanges();
 
-            return Ok(feedBack);
+            return Ok(resort);
         }
 
         protected override void Dispose(bool disposing)
@@ -111,9 +110,9 @@ namespace Sem3_backend.API
             base.Dispose(disposing);
         }
 
-        private bool FeedBackExists(int id)
+        private bool ResortExists(int id)
         {
-            return db.FeedBacks.Count(e => e.Id == id) > 0;
+            return db.Resorts.Count(e => e.ResortID == id) > 0;
         }
     }
 }
