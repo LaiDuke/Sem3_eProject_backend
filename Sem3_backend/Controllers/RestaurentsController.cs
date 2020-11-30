@@ -10,12 +10,12 @@ using Sem3_backend.Models;
 
 namespace Sem3_backend.Controllers
 {
+    [Authorize]
     public class RestaurentsController : Controller
     {
         private TouristSpotDbContext db = new TouristSpotDbContext();
 
         // GET: Restaurents
-        [AllowAnonymous]
         public ActionResult Index()
         {
             var restaurents = db.Restaurents.Include(r => r.TouristSpot);
@@ -23,7 +23,6 @@ namespace Sem3_backend.Controllers
         }
 
         // GET: Restaurents/Details/5
-        [AllowAnonymous]
         public ActionResult Details(int? id)
         {
             if (id == null)

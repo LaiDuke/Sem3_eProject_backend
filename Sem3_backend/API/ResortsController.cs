@@ -34,7 +34,7 @@ namespace Sem3_backend.API
 
             return Ok(resort);
         }
-
+        [Authorize]
         // PUT: api/Resorts/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutResort(int id, Resort resort)
@@ -69,7 +69,7 @@ namespace Sem3_backend.API
 
             return StatusCode(HttpStatusCode.NoContent);
         }
-
+        [Authorize]
         // POST: api/Resorts
         [ResponseType(typeof(Resort))]
         public IHttpActionResult PostResort(Resort resort)
@@ -84,7 +84,7 @@ namespace Sem3_backend.API
 
             return CreatedAtRoute("DefaultApi", new { id = resort.ResortID }, resort);
         }
-
+        [Authorize]
         // DELETE: api/Resorts/5
         [ResponseType(typeof(Resort))]
         public IHttpActionResult DeleteResort(int id)

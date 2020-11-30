@@ -34,7 +34,7 @@ namespace Sem3_backend.API
 
             return Ok(transport);
         }
-
+        [Authorize]
         // PUT: api/Transports/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutTransport(int id, Transport transport)
@@ -69,7 +69,7 @@ namespace Sem3_backend.API
 
             return StatusCode(HttpStatusCode.NoContent);
         }
-
+        [Authorize]
         // POST: api/Transports
         [ResponseType(typeof(Transport))]
         public IHttpActionResult PostTransport(Transport transport)
@@ -84,7 +84,7 @@ namespace Sem3_backend.API
 
             return CreatedAtRoute("DefaultApi", new { id = transport.TransportID }, transport);
         }
-
+        [Authorize]
         // DELETE: api/Transports/5
         [ResponseType(typeof(Transport))]
         public IHttpActionResult DeleteTransport(int id)

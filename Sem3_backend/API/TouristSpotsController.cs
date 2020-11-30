@@ -34,7 +34,7 @@ namespace Sem3_backend.API
 
             return Ok(touristSpot);
         }
-
+        [Authorize]
         // PUT: api/TouristSpots/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutTouristSpot(int id, TouristSpot touristSpot)
@@ -69,7 +69,7 @@ namespace Sem3_backend.API
 
             return StatusCode(HttpStatusCode.NoContent);
         }
-
+        [Authorize]
         // POST: api/TouristSpots
         [ResponseType(typeof(TouristSpot))]
         public IHttpActionResult PostTouristSpot(TouristSpot touristSpot)
@@ -84,7 +84,7 @@ namespace Sem3_backend.API
 
             return CreatedAtRoute("DefaultApi", new { id = touristSpot.TouristSpotID }, touristSpot);
         }
-
+        [Authorize]
         // DELETE: api/TouristSpots/5
         [ResponseType(typeof(TouristSpot))]
         public IHttpActionResult DeleteTouristSpot(int id)

@@ -34,7 +34,7 @@ namespace Sem3_backend.API
 
             return Ok(travel);
         }
-
+        [Authorize]
         // PUT: api/Travels/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutTravel(int id, Travel travel)
@@ -69,7 +69,7 @@ namespace Sem3_backend.API
 
             return StatusCode(HttpStatusCode.NoContent);
         }
-
+        [Authorize]
         // POST: api/Travels
         [ResponseType(typeof(Travel))]
         public IHttpActionResult PostTravel(Travel travel)
@@ -84,7 +84,7 @@ namespace Sem3_backend.API
 
             return CreatedAtRoute("DefaultApi", new { id = travel.TravelID }, travel);
         }
-
+        [Authorize]
         // DELETE: api/Travels/5
         [ResponseType(typeof(Travel))]
         public IHttpActionResult DeleteTravel(int id)

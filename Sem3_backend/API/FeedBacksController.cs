@@ -16,12 +16,13 @@ namespace Sem3_backend.API
     {
         private TouristSpotDbContext db = new TouristSpotDbContext();
 
+        [Authorize]
         // GET: api/FeedBacks
         public IQueryable<FeedBack> GetFeedBacks()
         {
             return db.FeedBacks;
         }
-
+        [Authorize]
         // GET: api/FeedBacks/5
         [ResponseType(typeof(FeedBack))]
         public IHttpActionResult GetFeedBack(int id)
@@ -34,7 +35,7 @@ namespace Sem3_backend.API
 
             return Ok(feedBack);
         }
-
+        [Authorize]
         // PUT: api/FeedBacks/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutFeedBack(int id, FeedBack feedBack)
@@ -84,7 +85,7 @@ namespace Sem3_backend.API
 
             return CreatedAtRoute("DefaultApi", new { id = feedBack.Id }, feedBack);
         }
-
+        [Authorize]
         // DELETE: api/FeedBacks/5
         [ResponseType(typeof(FeedBack))]
         public IHttpActionResult DeleteFeedBack(int id)

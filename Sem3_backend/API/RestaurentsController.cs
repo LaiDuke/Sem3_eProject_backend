@@ -34,7 +34,7 @@ namespace Sem3_backend.API
 
             return Ok(restaurent);
         }
-
+        [Authorize]
         // PUT: api/Restaurents/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutRestaurent(int id, Restaurent restaurent)
@@ -69,7 +69,7 @@ namespace Sem3_backend.API
 
             return StatusCode(HttpStatusCode.NoContent);
         }
-
+        [Authorize]
         // POST: api/Restaurents
         [ResponseType(typeof(Restaurent))]
         public IHttpActionResult PostRestaurent(Restaurent restaurent)
@@ -84,7 +84,7 @@ namespace Sem3_backend.API
 
             return CreatedAtRoute("DefaultApi", new { id = restaurent.RestaurentID }, restaurent);
         }
-
+        [Authorize]
         // DELETE: api/Restaurents/5
         [ResponseType(typeof(Restaurent))]
         public IHttpActionResult DeleteRestaurent(int id)
