@@ -8,7 +8,7 @@ namespace Sem3_backend.Models
 {
     public class TouristSpotDbContext : DbContext
     {
-        public TouristSpotDbContext() : base("name=conn")
+        public TouristSpotDbContext() : base("name=DefaultConnection")
         {
             Database.SetInitializer(new DbInitializer());
             this.Configuration.LazyLoadingEnabled = false;
