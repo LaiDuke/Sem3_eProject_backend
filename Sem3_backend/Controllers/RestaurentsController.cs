@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 using Sem3_backend.Models;
 
 namespace Sem3_backend.Controllers
@@ -16,10 +17,13 @@ namespace Sem3_backend.Controllers
         private TouristSpotDbContext db = new TouristSpotDbContext();
 
         // GET: Restaurents
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            var restaurents = db.Restaurents.Include(r => r.TouristSpot);
-            return View(restaurents.ToList());
+            if (page == null) page = 1;
+            var restaurents = (from x in db.Restaurents select x).Include(t => t.TouristSpot).OrderBy(x => x.RestaurentID);
+            int pageSize = 4;
+            int pageNumber = (page ?? 1);
+            return View(restaurents.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Restaurents/Details/5
@@ -29,7 +33,7 @@ namespace Sem3_backend.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Restaurent restaurent = db.Restaurents.Find(id);
+            Restaurent restaurent = db.Restaurents.Include(t => t.TouristSpot).SingleOrDefault(x => x.RestaurentID == id);
             if (restaurent == null)
             {
                 return HttpNotFound();
