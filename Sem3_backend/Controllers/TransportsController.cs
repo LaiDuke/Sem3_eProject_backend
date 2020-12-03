@@ -6,31 +6,34 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 using Sem3_backend.Models;
 
 namespace Sem3_backend.Controllers
 {
+    [Authorize]
     public class TransportsController : Controller
     {
         private TouristSpotDbContext db = new TouristSpotDbContext();
 
         // GET: Transports
-        [AllowAnonymous]
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            var transports = db.Transports.Include(t => t.Travel);
-            return View(transports.ToList());
+            if (page == null) page = 1;
+            var transports = (from x in db.Transports select x).Include(t => t.Travel).OrderBy(x => x.TransportID);
+            int pageSize = 4;
+            int pageNumber = (page ?? 1);
+            return View(transports.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Transports/Details/5
-        [AllowAnonymous]
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Transport transport = db.Transports.Find(id);
+            Transport transport = db.Transports.Include(t => t.Travel).SingleOrDefault(x => x.TransportID == id);
             if (transport == null)
             {
                 return HttpNotFound();

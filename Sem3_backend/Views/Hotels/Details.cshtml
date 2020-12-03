@@ -5,14 +5,19 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+@section Bredcrumbs {
+    <li class="breadcrumb-item">
+        <a href="">Hotel Details </a>
+    </li>
+}
 
+<h2>Hotel Details</h2>
 <div>
     <h4>Hotel</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.TouristSpot.Name)
+            TouristSpot Name
         </dt>
 
         <dd>
@@ -24,7 +29,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ImageUrl)
+            <img src="http://res.cloudinary.com/a123abc/image/upload/@Model.ImageUrl" style="width: 300px"/>
         </dd>
 
         <dt>

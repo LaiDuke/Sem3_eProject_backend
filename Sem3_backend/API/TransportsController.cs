@@ -12,45 +12,44 @@ using Sem3_backend.Models;
 
 namespace Sem3_backend.API
 {
-    public class FeedBacksController : ApiController
+    public class TransportsController : ApiController
     {
         private TouristSpotDbContext db = new TouristSpotDbContext();
 
-        [Authorize]
-        // GET: api/FeedBacks
-        public IQueryable<FeedBack> GetFeedBacks()
+        // GET: api/Transports
+        public IQueryable<Transport> GetTransports()
         {
-            return db.FeedBacks;
+            return db.Transports;
         }
-        [Authorize]
-        // GET: api/FeedBacks/5
-        [ResponseType(typeof(FeedBack))]
-        public IHttpActionResult GetFeedBack(int id)
+
+        // GET: api/Transports/5
+        [ResponseType(typeof(Transport))]
+        public IHttpActionResult GetTransport(int id)
         {
-            FeedBack feedBack = db.FeedBacks.Find(id);
-            if (feedBack == null)
+            Transport transport = db.Transports.Find(id);
+            if (transport == null)
             {
                 return NotFound();
             }
 
-            return Ok(feedBack);
+            return Ok(transport);
         }
         [Authorize]
-        // PUT: api/FeedBacks/5
+        // PUT: api/Transports/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutFeedBack(int id, FeedBack feedBack)
+        public IHttpActionResult PutTransport(int id, Transport transport)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != feedBack.Id)
+            if (id != transport.TransportID)
             {
                 return BadRequest();
             }
 
-            db.Entry(feedBack).State = EntityState.Modified;
+            db.Entry(transport).State = EntityState.Modified;
 
             try
             {
@@ -58,7 +57,7 @@ namespace Sem3_backend.API
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!FeedBackExists(id))
+                if (!TransportExists(id))
                 {
                     return NotFound();
                 }
@@ -70,36 +69,36 @@ namespace Sem3_backend.API
 
             return StatusCode(HttpStatusCode.NoContent);
         }
-
-        // POST: api/FeedBacks
-        [ResponseType(typeof(FeedBack))]
-        public IHttpActionResult PostFeedBack(FeedBack feedBack)
+        [Authorize]
+        // POST: api/Transports
+        [ResponseType(typeof(Transport))]
+        public IHttpActionResult PostTransport(Transport transport)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.FeedBacks.Add(feedBack);
+            db.Transports.Add(transport);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = feedBack.Id }, feedBack);
+            return CreatedAtRoute("DefaultApi", new { id = transport.TransportID }, transport);
         }
         [Authorize]
-        // DELETE: api/FeedBacks/5
-        [ResponseType(typeof(FeedBack))]
-        public IHttpActionResult DeleteFeedBack(int id)
+        // DELETE: api/Transports/5
+        [ResponseType(typeof(Transport))]
+        public IHttpActionResult DeleteTransport(int id)
         {
-            FeedBack feedBack = db.FeedBacks.Find(id);
-            if (feedBack == null)
+            Transport transport = db.Transports.Find(id);
+            if (transport == null)
             {
                 return NotFound();
             }
 
-            db.FeedBacks.Remove(feedBack);
+            db.Transports.Remove(transport);
             db.SaveChanges();
 
-            return Ok(feedBack);
+            return Ok(transport);
         }
 
         protected override void Dispose(bool disposing)
@@ -111,9 +110,9 @@ namespace Sem3_backend.API
             base.Dispose(disposing);
         }
 
-        private bool FeedBackExists(int id)
+        private bool TransportExists(int id)
         {
-            return db.FeedBacks.Count(e => e.Id == id) > 0;
+            return db.Transports.Count(e => e.TransportID == id) > 0;
         }
     }
 }

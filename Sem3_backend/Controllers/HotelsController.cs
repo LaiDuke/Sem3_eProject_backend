@@ -6,20 +6,24 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 using Sem3_backend.Models;
 
 namespace Sem3_backend.Controllers
 {
-
+    
     public class HotelsController : Controller
     {
         private TouristSpotDbContext db = new TouristSpotDbContext();
 
         // GET: Hotels
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            var hotels = db.Hotels.Include(h => h.TouristSpot);
-            return View(hotels.ToList());
+            if (page == null) page = 1;
+            var hotels = (from x in db.Hotels select x).Include(t => t.TouristSpot).OrderBy(x => x.HotelID);
+            int pageSize = 4;
+            int pageNumber = (page ?? 1);
+            return View(hotels.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Hotels/Details/5
@@ -29,7 +33,7 @@ namespace Sem3_backend.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Hotel hotel = db.Hotels.Find(id);
+            Hotel hotel = db.Hotels.Include(t => t.TouristSpot).SingleOrDefault(x => x.HotelID == id);
             if (hotel == null)
             {
                 return HttpNotFound();

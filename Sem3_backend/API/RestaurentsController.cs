@@ -12,45 +12,44 @@ using Sem3_backend.Models;
 
 namespace Sem3_backend.API
 {
-    public class FeedBacksController : ApiController
+    public class RestaurentsController : ApiController
     {
         private TouristSpotDbContext db = new TouristSpotDbContext();
 
-        [Authorize]
-        // GET: api/FeedBacks
-        public IQueryable<FeedBack> GetFeedBacks()
+        // GET: api/Restaurents
+        public IQueryable<Restaurent> GetRestaurents()
         {
-            return db.FeedBacks;
+            return db.Restaurents;
         }
-        [Authorize]
-        // GET: api/FeedBacks/5
-        [ResponseType(typeof(FeedBack))]
-        public IHttpActionResult GetFeedBack(int id)
+
+        // GET: api/Restaurents/5
+        [ResponseType(typeof(Restaurent))]
+        public IHttpActionResult GetRestaurent(int id)
         {
-            FeedBack feedBack = db.FeedBacks.Find(id);
-            if (feedBack == null)
+            Restaurent restaurent = db.Restaurents.Find(id);
+            if (restaurent == null)
             {
                 return NotFound();
             }
 
-            return Ok(feedBack);
+            return Ok(restaurent);
         }
         [Authorize]
-        // PUT: api/FeedBacks/5
+        // PUT: api/Restaurents/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutFeedBack(int id, FeedBack feedBack)
+        public IHttpActionResult PutRestaurent(int id, Restaurent restaurent)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != feedBack.Id)
+            if (id != restaurent.RestaurentID)
             {
                 return BadRequest();
             }
 
-            db.Entry(feedBack).State = EntityState.Modified;
+            db.Entry(restaurent).State = EntityState.Modified;
 
             try
             {
@@ -58,7 +57,7 @@ namespace Sem3_backend.API
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!FeedBackExists(id))
+                if (!RestaurentExists(id))
                 {
                     return NotFound();
                 }
@@ -70,36 +69,36 @@ namespace Sem3_backend.API
 
             return StatusCode(HttpStatusCode.NoContent);
         }
-
-        // POST: api/FeedBacks
-        [ResponseType(typeof(FeedBack))]
-        public IHttpActionResult PostFeedBack(FeedBack feedBack)
+        [Authorize]
+        // POST: api/Restaurents
+        [ResponseType(typeof(Restaurent))]
+        public IHttpActionResult PostRestaurent(Restaurent restaurent)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.FeedBacks.Add(feedBack);
+            db.Restaurents.Add(restaurent);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = feedBack.Id }, feedBack);
+            return CreatedAtRoute("DefaultApi", new { id = restaurent.RestaurentID }, restaurent);
         }
         [Authorize]
-        // DELETE: api/FeedBacks/5
-        [ResponseType(typeof(FeedBack))]
-        public IHttpActionResult DeleteFeedBack(int id)
+        // DELETE: api/Restaurents/5
+        [ResponseType(typeof(Restaurent))]
+        public IHttpActionResult DeleteRestaurent(int id)
         {
-            FeedBack feedBack = db.FeedBacks.Find(id);
-            if (feedBack == null)
+            Restaurent restaurent = db.Restaurents.Find(id);
+            if (restaurent == null)
             {
                 return NotFound();
             }
 
-            db.FeedBacks.Remove(feedBack);
+            db.Restaurents.Remove(restaurent);
             db.SaveChanges();
 
-            return Ok(feedBack);
+            return Ok(restaurent);
         }
 
         protected override void Dispose(bool disposing)
@@ -111,9 +110,9 @@ namespace Sem3_backend.API
             base.Dispose(disposing);
         }
 
-        private bool FeedBackExists(int id)
+        private bool RestaurentExists(int id)
         {
-            return db.FeedBacks.Count(e => e.Id == id) > 0;
+            return db.Restaurents.Count(e => e.RestaurentID == id) > 0;
         }
     }
 }
